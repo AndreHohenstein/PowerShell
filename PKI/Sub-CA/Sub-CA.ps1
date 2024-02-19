@@ -1,6 +1,6 @@
 #region
 
-# Erstellt einen Alias für den FQDN "srv01.contoso.com", wird für die Speerprüfung miteels HTTP benötigt
+# Erstellt einen Alias fuer den FQDN "srv01.contoso.com", wird fuer die Speerpruefung miteels HTTP benoetigt
 Invoke-Command -ComputerName DC01 `
                -ScriptBlock {Add-DnsServerResourceRecordCName -ComputerName DC01 `
                                                               -Name "pki" `
@@ -12,16 +12,16 @@ Invoke-Command -ComputerName DC01 `
 
 #region
 
-# Zertifikat der Root-CA im AD veröffentlichen:
+# Zertifikat der Root-CA im AD veroeffentlichen:
 certutil.exe -f -dspublish "C:\cert\Root-CA.crt" RootCA
 
-# Sperrliste der Root-CA im Ad veröffentlichen:
+# Sperrliste der Root-CA im Ad veroeffentlichen:
 certutil.exe -f -dspublish "C:\Cert\Root-CA.crl" RootCA
 
 gpupdate /force
 
 
-# Ordner erstellen für Datenbank uind Logfiles:
+# Ordner erstellen fuer Datenbank uind Logfiles:
 $certlogpath = "C:\Certlog\"
 if (!(test-path -path $certlogpath)) {new-item -path $certlogpath -itemtype directory}
 
@@ -36,7 +36,7 @@ if ($checkADCS.Installed -ne 'True') {
                              -IncludeManagementTools | Out-Null}
 
 
-#Konfiguration der Sub-CA - 10 Jahre Gültigkeit mit jährlicher CRL überprüfung und Zertifikatsanforderung:
+#Konfiguration der Sub-CA - 10 Jahre Gueltigkeit mit jaehrlicher CRL ueberpruefung und Zertifikatsanforderung:
 Install-AdcsCertificationAuthority -CAType EnterpriseSubordinateCA `
                                    -CACommonName "contoso-SubCA" `
                                    -CADistinguishedNameSuffix 'DC=CONTOSO,DC=COM' `
@@ -58,7 +58,7 @@ Install-AdcsWebEnrollment -Confirm:$false
 
 #region
 
-# Zertifikatsanforderung-Datei zum Root-Ca kopieren und die Anforderung bestätigen srv1.contoso.com.req
+# Zertifikatsanforderung-Datei zum Root-Ca kopieren und die Anforderung bestaetigen srv1.contoso.com.req
 
 ###  Hier weitermachen nach die Zertifikatsdatei auf der Root-CA erstellt wurde. ###
 
@@ -95,15 +95,15 @@ Add-CAAuthorityInformationAccess -Uri "ldap:///CN=%7,CN=AIA,CN=Public Key Servic
 Add-CAAuthorityInformationAccess -AddToCertificateAia -uri "http://pki.contoso.com/certenroll/%3%4.crt" -Force
 
 
-# Maximale Gültigkeit für ausgestelle Zertifikate einstellen:
+# Maximale Gueltigkeit fuer ausgestelle Zertifikate einstellen:
 certutil -setreg ca\ValidityPeriodUnits 5
 certutil -setreg ca\ValidityPeriod "Years"
 
-# Definiert die Überlappungsperiode, die für die CRL Publikation gedacht ist. CRL Overlap:
+# Definiert die ueberlappungsperiode, die fuer die CRL Publikation gedacht ist. CRL Overlap:
 Certutil -setreg CA\CRLOverlapPeriodUnits 12
 Certutil -setreg CA\CRLOverlapPeriod "Hours"
 
-# CA Überwachung aktivieren:
+# CA ueberwachung aktivieren:
 certutil -setreg CA\AuditFilter 127
 
 Restart-Service certsvc -Verbose -PassThru
@@ -121,7 +121,7 @@ $CRL = "C:\Cert\Root-CA.crl"
 Copy-Item $CRT C:\Windows\System32\certsrv\CertEnroll
 Copy-Item $CRL C:\Windows\System32\certsrv\CertEnroll
 
-# Neue Sperrliste veröffentlichen:
+# Neue Sperrliste veroeffentlichen:
 Certutil -crl
 
 gpupdate /force

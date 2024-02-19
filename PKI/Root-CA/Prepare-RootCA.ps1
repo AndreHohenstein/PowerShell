@@ -1,7 +1,7 @@
-# Erstellt einen neuen lokalen Benutzer und fügt ihn zur Gruppe der Administratoren hinzu.
-# Alle weiteren Schritte bitte mit dem neuen Account durchführen.
+# Erstellt einen neuen lokalen Benutzer und fuegt ihn zur Gruppe der Administratoren hinzu.
+# Alle weiteren Schritte bitte mit dem neuen Account durchfuehren.
 $Password = Read-Host -Prompt "Enter your Password" -AsSecureString
-New-LocalUser "Andre" -Password $Password -FullName "André Hohenstein" -Description "new loacal Admin" -PasswordNeverExpires
+New-LocalUser "Andre" -Password $Password -FullName "AndrÃ© Hohenstein" -Description "new loacal Admin" -PasswordNeverExpires
 Add-LocalGroupMember -Group "Administratoren" -Member "Andre"
 
 Start-Sleep -Seconds 1

@@ -1,6 +1,6 @@
 #region
 # BEGIN ROOT CA
-# Ordner erstellen für Datenbank und Logfiles:
+# Ordner erstellen fuer Datenbank und Logfiles:
 $certlogpath = "C:\Certlog\"
 if (!(test-path -path $certlogpath)) {new-item -path $certlogpath -itemtype directory}
 
@@ -14,7 +14,7 @@ if ($checkADCS.Installed -ne 'True') {
                              -IncludeManagementTools | Out-Null}
 
 
-#Konfiguration der Root-CA (15 Jahre Gültigkeit mit halbjährlicher CRL-Überprüfung:
+#Konfiguration der Root-CA (15 Jahre Gueltigkeit mit halbjaehrlicher CRL-ueberpruefung:
 Install-AdcsCertificationAuthority -CAType StandaloneRootCA `
                                    -CACommonName Root-CA `
                                    -CADistinguishedNameSuffix 'DC=CONTOSO,DC=COM' `
@@ -33,7 +33,7 @@ Install-AdcsCertificationAuthority -CAType StandaloneRootCA `
 # Register Naming Context (Forestroot contoso.com)
 Certutil -setreg CA\DSConfigDN 'CN=Configuration,DC=contoso,DC=com'
 
-# Maximale Gültigkeit für ausgestelle Zertifikate einstellen:
+# Maximale Gueltigkeit fuer ausgestelle Zertifikate einstellen:
 #Configure Max Validity Period of Certificates Issued by this CA
 Certutil -setreg ca\ValidityPeriodUnits '10'
 Certutil -setreg ca\ValidityPeriod 'Years'
@@ -42,11 +42,11 @@ Certutil -setreg ca\ValidityPeriod 'Years'
 Certutil -setreg CA\CRLDeltaPeriodUnits '0'
 Certutil -setreg CA\CRLDeltaPeriod 'Hours'
 
-# Zertifikatsperrlisten- und Deltazertifikatsperrlisten-Überschneidungszeitraum
+# Zertifikatsperrlisten- und Deltazertifikatsperrlisten-ueberschneidungszeitraum
 Certutil -setreg CA\CRLOverlapPeriodUnits '12'
 Certutil -setreg CA\CRLOverlapPeriod 'Hours'
 
-# CA Überwachung aktivieren:
+# CA ueberwachung aktivieren:
 Certutil -setreg CA\AuditFilter '127'
 
 # Review the CA Configuration
@@ -96,13 +96,13 @@ Add-CAAuthorityInformationAccess -AddToCertificateAia -uri "ldap:///CN=%7,CN=AIA
 Restart-Service certsvc -Verbose -PassThru
 Start-Sleep -Seconds 20
 
-# Neue Sperrliste veröffentlichen:
+# Neue Sperrliste verÃ¶ffentlichen:
 Certutil -crl
 
 #endregion
 
 #region
-# Ordner für Datenaustausch:
+# Ordner fuer Datenaustausch:
 $ExportFolder = "C:\Cert\"
 if (!(test-path -path $ExportFolder)) {new-item -path $ExportFolder -itemtype directory}
 

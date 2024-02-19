@@ -1,0 +1,21 @@
+[Version]
+Signature="$Windows NT$"
+
+[PolicyStatementExtension]
+Policies=InternalPolicy
+
+[InternalPolicy]
+OID= 1.2.3.4.1455.67.89.5
+Notice="Policy Statement"
+URL=http://pki.contoso.com/certenroll/policy.aspx
+
+[Certsrv_Server]
+RenewalKeyLength=ECDSA_P256
+RenewalValidityPeriod=Years
+RenewalValidityPeriodUnits=5
+CRLPeriod=Days
+CRLPeriodUnits=2
+CRLDeltaPeriod=Hours
+CRLDeltaPeriodUnits=12
+LoadDefaultTemplates=0
+AlternateSignatureAlgorithm=0

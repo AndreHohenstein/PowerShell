@@ -1,4 +1,4 @@
-﻿# Add Online Responder Services role and management snap-in
+# Add Online Responder Services role and management snap-in
 $checkADCSOnline = Get-WindowsFeature -Name 'ADCS-Online-Cert'
 if ($checkADCSOnline.Installed -ne 'True') {
       #Install/Enable "ADCS-Cert-Authority"

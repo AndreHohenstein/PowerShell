@@ -1,0 +1,222 @@
+{
+  "If Bedingung": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "If Bedingung"
+  },
+  "Else Bedingung": {
+    "prefix": "else",
+    "body": [
+      "else {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Else Bedingung"
+  },
+  "ElseIf Bedingung": {
+    "prefix": "elseif",
+    "body": [
+      "elseif (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Elseif Bedingung"
+  },
+  "While Schleife": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "While Schleife"
+  },
+  "Do...while Schleife": {
+    "prefix": "do",
+    "body": [
+      "do {",
+      "\t$0",
+      "} while (${1:condition});"
+    ],
+    "description": "Do...while Schleife"
+  },
+  "Do...until Schleife": {
+    "prefix": "do",
+    "body": [
+      "do {",
+      "\t$0",
+      "} until (${1:condition});"
+    ],
+    "description": "Do...until Schleife"
+  },
+  "Foreach Schleife": {
+    "prefix": "foreach",
+    "body": [
+      "foreach (${1:item} in ${2:collection}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Foreach Schleife"
+  },
+  "For Schleife": {
+    "prefix": "for",
+    "body": [
+      "for (${1:i} = 0; ${1:i} -lt ${2:length}; ${1:i}++) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For Schleife"
+  },
+  "For Schleife rückwärts": {
+    "prefix": "forr",
+    "body": [
+      "for (${1:i} = ${2:length} - 1; ${1:i} -ge 0; ${1:i}--) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For Schleife rückwärts"
+  },
+  "Switch Bedingung": {
+    "prefix": "switch",
+    "body": [
+      "switch (${1:variable}) {",
+      "\t${2:condition} { ${3:action}; break }",
+      "\tDefault {}",
+      "}"
+    ],
+    "description": "Switch Bedingung"
+  },
+  "Try catch": {
+    "prefix": "try",
+    "body": [
+      "try {",
+      "\t$0",
+      "} catch [${1:System.Exception}] {",
+      "\t# Exception is stored in the automatic variable $_",
+      "\t${2:Write-Error $_}",
+      "}"
+    ],
+    "description": "Try catch Fehlerbehandlung"
+  },
+  "Try catch finally": {
+    "prefix": "trycf",
+    "body": [
+      "try {",
+      "\t$0",
+      "} catch [${1:System.Exception}] {",
+      "\t# Exception is stored in the automatic variable $_",
+      "\t${2:Write-Error $_}",
+      "} finally {",
+      "\t${3:# cleanup code here}",
+      "}"
+    ],
+    "description": "Try catch finally Fehlerbehandlung"
+  },
+  "Try finally Fehlerbehandlung": {
+    "prefix": "tryf",
+    "body": [
+      "try {",
+      "\t$0",
+      "} finally {",
+      "\t${1:# cleanup code here}",
+      "}"
+    ],
+    "description": "Try finally Fehlerbehandlung"
+  },
+  "Class": {
+    "prefix": "class",
+    "body": [
+      "class ${1:Name} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Class Konstruieren"
+  },
+  "Enum": {
+    "prefix": "enum",
+    "body": [
+      "enum ${1:Name} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Enum Konstruieren"
+  },
+  "Method": {
+    "prefix": "meth",
+    "body": [
+      "[${1:void}] ${2:MethodName}() {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Method Konstruieren"
+  },
+  "Property": {
+    "prefix": "prop",
+    "body": [
+      "[${1:string}] ${2:PropertyName}$0"
+    ],
+    "description": "Class property Konstruieren"
+  },
+  "Property hidden": {
+    "prefix": "proph",
+    "body": [
+      "hidden [${1:string}] ${2:PropertyName}$0"
+    ],
+    "description": "Hidden class property Konstruieren"
+  },
+  "Function": {
+    "prefix": "func",
+    "body": [
+      "function ${1:Name} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Function Konstruieren"
+  },
+  "Function advanced": {
+    "prefix": "funcadv",
+    "body": [
+      "<#",
+      ".SYNOPSIS",
+      "\t${1:Kurzbeschreibung der Funktion}",
+      ".DESCRIPTION",
+      "\t${2:Lange Beschreibung der Funktion}",
+      ".EXAMPLE",
+      "\t${3:Beispiel Code}",
+      "#>",
+      "function ${4:Verb}-${5:Noun} {",
+      "\t[CmdletBinding()]",
+      "\tparam(",
+      "\t\t[Parameter(Mandatory=$true)]",
+      "\t\t[string]${6:Param1}",
+      "\t)",
+      "\tprocess {",
+      "\t\t$0",
+      "\t}",
+      "}"
+    ],
+    "description": "Advanced function Konstruieren"
+  },
+  "Help": {
+    "prefix": "help",
+    "body": [
+      "<#",
+      ".SYNOPSIS",
+      "\t${1:Kurzbeschreibung}",
+      ".DESCRIPTION",
+      "\t${2:Lange Beschreibung}",
+      ".PARAMETER ${3:Path}",
+      "\t${4:Pfad zu einer oder mehreren Orten.}",
+      ".EXAMPLE",
+      "\tC:\\PS> ${5:Beispiel}",
+      ".NOTES",
+      "\t${6:Allgemeine Notizen}",
+      "#>"
+    ],
+    "description": "Hilfe Kommentar-Block Konstruieren"
+  }
+}
